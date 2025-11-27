@@ -1,0 +1,26 @@
+{
+  "name": "@pet-market/backend-market-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@pet-market/backend-market"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/backend-market-e2e/jest.config.cts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@pet-market/backend-market:build",
+          "@pet-market/backend-market:serve"
+        ]
+      }
+    }
+  }
+}
