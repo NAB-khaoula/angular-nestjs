@@ -199,14 +199,4 @@ export const productsList = [
     updatedAt: new Date(),
     isFeatured: false,
   },
-  {
-    name: 'Reptile Food',
-    description: 'Nutritious food for various reptile species.',
-    price: 11.99,
-    image: 'products/reptile-food.jpg',
-    stripePriceId: 'price_xxxxx_repfood',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    isFeatured: false,
-  },
 ];

@@ -1,6 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-
-
 import { productsList } from './productsList';
 
 const prisma = new PrismaClient();
@@ -8,6 +6,7 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Start seeding...');
 
+  // Check existing products
   const existingProducts = await prisma.product.findMany({
     select: { stripePriceId: true },
   });
@@ -19,6 +18,7 @@ async function main() {
 
   console.log({ productsList });
 
+  // Create only products that don't exist
   for (const product of productsList) {
     const { ...productData } = product;
     if (!existingPriceIds.has(productData.stripePriceId)) {
