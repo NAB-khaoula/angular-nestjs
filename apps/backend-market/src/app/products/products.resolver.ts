@@ -21,8 +21,13 @@ export class ProductsResolver {
   }
 
   @Query(() => Product, { name: 'product' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.productsService.findOne(id);
+  }
+
+  @Query(() => [Product], { name: 'searchProducts' })
+  async searchProducts(@Args('keyword', { type: () => String }) keyword: string) {
+    return this.productsService.searchProducts(keyword);
   }
 
   @Mutation(() => Product)

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
 import { PrismaService } from '../prisma/prisma.service';
+import { Product } from '@prisma/client';
 
 @Injectable()
 export class ProductsService {
@@ -11,6 +12,9 @@ export class ProductsService {
   }
 
   create(createProductInput: CreateProductInput) {
+    // return this.prisma.product.create({
+    //   data: createProductInput
+    // });
     return 'This action adds a new product';
   }
 
@@ -18,8 +22,12 @@ export class ProductsService {
     return this.prisma.product.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  findOne(id: string) {
+    return this.prisma.product.findUnique({
+      where: {
+        id
+      }
+    });
   }
 
   update(id: number, updateProductInput: UpdateProductInput) {
@@ -28,5 +36,17 @@ export class ProductsService {
 
   remove(id: number) {
     return `This action removes a #${id} product`;
+  }
+
+  async searchProducts(keyword: string): Promise<Product[]> {
+    const lowercaseKeyword = keyword.toLowerCase();
+    return  this.prisma.product.findMany({
+      where: {
+        OR: [
+          {name: {contains: lowercaseKeyword, mode: 'insensitive' }},
+          {description: {contains: lowercaseKeyword, mode: 'insensitive'}}
+        ]
+      }
+    }); 
   }
 }
