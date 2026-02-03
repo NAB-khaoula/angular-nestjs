@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { Header } from './components/header/header.component';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule, Header],
   selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class App {
   protected title = 'frontend-market';
