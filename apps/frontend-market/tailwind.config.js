@@ -1,5 +1,4 @@
 const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
-const { default: daisyui } = require('daisyui');
 const { join } = require('path');
 
 /** @type {import('tailwindcss').Config} */
@@ -12,7 +11,9 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require(daisyui)
+    require('daisyui')
   ],
-  themes: ['forest', 'lemonade']
+  daisyui: {
+    themes: ['forest']
+  }
 };
