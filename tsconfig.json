@@ -8,6 +8,9 @@
     },
     {
       "path": "./apps/backend-market"
+    },
+    {
+      "path": "./apps/frontend-market-e2e"
     }
   ]
 }
