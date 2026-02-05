@@ -10,6 +10,7 @@ query GetProducts{
     id
     name
     description
+    image
   }
 }
 `

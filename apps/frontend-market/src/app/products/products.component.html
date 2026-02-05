@@ -1,4 +1,24 @@
-<p>products works!</p>
-<pre>
-    {{productStore | json}}
-</pre>
+@if(productStore.loading()){
+<div>loading ...</div>
+} @else if (productStore.error()){
+<div>{{ productStore.error() }}</div>
+} @else if (productStore.products().length){
+<ul class="flex flex-row flex-wrap gap-4">
+  @for (product of productStore.products(); track product.id) {
+  <li>
+    <div class="card glass w-96">
+      <figure>
+        <img [src]="product.image" alt="car!" />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary">Add to card!</button>
+        </div>
+      </div>
+    </div>
+  </li>
+  }
+</ul>
+}
